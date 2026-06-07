@@ -39,7 +39,7 @@ export function InvoiceFilters({ filters, onChange, onReset, activeCount }: Invo
         />
       </div>
 
-      <div className="flex items-center gap-2 sm:gap-3">
+      <div className="flex items-center gap-2 sm:contents">
         <Select
           value={filters.status || ALL}
           onValueChange={(v) => onChange({ status: v === ALL ? '' : (v as InvoiceFilterState['status']) })}
