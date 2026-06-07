@@ -110,7 +110,7 @@ function DateRangePopover({
         Dates
         {hasDates && <span className="ml-1 h-1.5 w-1.5 rounded-full bg-primary" />}
       </PopoverTrigger>
-      <PopoverContent align="end" className="w-80 space-y-4">
+      <PopoverContent align="end" className="w-[calc(100vw-2rem)] max-w-sm space-y-4 sm:w-80">
         <DateRow
           label="Issue date"
           from={filters.issueDateFrom}
