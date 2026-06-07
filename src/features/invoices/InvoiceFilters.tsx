@@ -27,9 +27,9 @@ export function InvoiceFilters({ filters, onChange, onReset, activeCount }: Invo
   const { customers } = useCustomers();
 
   return (
-    <div className="flex flex-col gap-2">
-      {/* Row 1: search (full width) */}
-      <div className="relative w-full">
+    <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
+      {/* Search — own row on mobile, inline on desktop */}
+      <div className="relative w-full sm:max-w-xs">
         <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <Input
           placeholder="Search invoice or customer…"
@@ -40,13 +40,13 @@ export function InvoiceFilters({ filters, onChange, onReset, activeCount }: Invo
         />
       </div>
 
-      {/* Row 2: the four filters share one row and shrink to fit (no scroll) */}
-      <div className="flex items-center gap-2">
+      {/* Filters — second row on mobile (share the width), inline on desktop (fixed widths) */}
+      <div className="flex items-center gap-2 sm:gap-3">
         <Select
           value={filters.status || ALL}
           onValueChange={(v) => onChange({ status: v === ALL ? '' : (v as InvoiceFilterState['status']) })}
         >
-          <SelectTrigger className="min-w-0 flex-1 sm:w-[140px] sm:flex-none">
+          <SelectTrigger className="min-w-0 flex-1 sm:w-[150px] sm:flex-none">
             <SelectValue placeholder="Status" />
           </SelectTrigger>
           <SelectContent>
@@ -60,25 +60,25 @@ export function InvoiceFilters({ filters, onChange, onReset, activeCount }: Invo
         </Select>
 
         <Select value={filters.taxRate || ALL} onValueChange={(v) => onChange({ taxRate: v === ALL ? '' : v })}>
-          <SelectTrigger className="min-w-0 flex-1 sm:w-[100px] sm:flex-none">
-            <SelectValue placeholder="Tax" />
+          <SelectTrigger className="min-w-0 flex-1 sm:w-[130px] sm:flex-none">
+            <SelectValue placeholder="Tax rate" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value={ALL}>All</SelectItem>
+            <SelectItem value={ALL}>All tax rates</SelectItem>
             {TAX_RATES.map((r) => (
               <SelectItem key={r} value={String(r)}>
-                {r}%
+                {r}% tax
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
 
         <Select value={filters.customerId || ALL} onValueChange={(v) => onChange({ customerId: v === ALL ? '' : v })}>
-          <SelectTrigger className="min-w-0 flex-1 sm:w-[170px] sm:flex-none">
+          <SelectTrigger className="min-w-0 flex-1 sm:w-[190px] sm:flex-none">
             <SelectValue placeholder="Customer" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value={ALL}>All</SelectItem>
+            <SelectItem value={ALL}>All customers</SelectItem>
             {customers.map((c) => (
               <SelectItem key={c._id} value={c._id}>
                 {c.name}
@@ -90,14 +90,9 @@ export function InvoiceFilters({ filters, onChange, onReset, activeCount }: Invo
         <DateRangePopover filters={filters} onChange={onChange} />
 
         {activeCount > 0 && (
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={onReset}
-            className="h-9 w-9 shrink-0 text-muted-foreground"
-            aria-label={`Clear ${activeCount} filters`}
-          >
+          <Button variant="ghost" size="sm" onClick={onReset} className="shrink-0 text-muted-foreground">
             <X className="h-4 w-4" />
+            <span className="hidden sm:inline">Clear ({activeCount})</span>
           </Button>
         )}
       </div>
