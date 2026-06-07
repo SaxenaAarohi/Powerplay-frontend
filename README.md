@@ -6,9 +6,9 @@ to the backend API to show invoices, customer profiles, and summary analytics.
 ## Tech stack
 
 - React + TypeScript + Vite
-- Tailwind CSS with shadcn-style components (Radix under the hood)
-- Redux Toolkit for state, plain `fetch` for API calls
-- React Hook Form + Zod for forms and validation
+- Tailwind CSS with shadcn-style components
+- Redux Toolkit for state management and API calls
+- Zod for validation
 - Recharts (charts), Framer Motion (animations), Lucide (icons), React Toastify (toasts)
 
 ## Setup
@@ -56,10 +56,8 @@ npm run preview   # preview the production build locally
 ## State management
 
 - **Shared server data** (invoices, customers, summary) lives in **Redux Toolkit** slices and is
-  fetched with plain `fetch` through a small service layer — so API calls aren't scattered across
-  components.
+  fetched through a small service layer — so API calls aren't scattered across components.
 - **Local UI state** (filters, sorting, open dialogs) stays in component `useState`.
-- **Forms** are handled by React Hook Form.
 
 ## Folder structure
 
