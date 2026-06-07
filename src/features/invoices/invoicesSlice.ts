@@ -9,6 +9,7 @@ interface InvoicesState {
   pagination: Pagination | null;
   status: RequestStatus;
   error: string | null;
+  currentRequestId: string | null;
 }
 
 const initialState: InvoicesState = {
@@ -16,6 +17,7 @@ const initialState: InvoicesState = {
   pagination: null,
   status: 'idle',
   error: null,
+  currentRequestId: null,
 };
 
 const message = (e: unknown, fallback: string) =>
@@ -73,20 +75,22 @@ const invoicesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchInvoices.pending, (state) => {
+      .addCase(fetchInvoices.pending, (state, action) => {
         state.status = 'loading';
         state.error = null;
+        state.currentRequestId = action.meta.requestId;
       })
       .addCase(fetchInvoices.fulfilled, (state, action) => {
+        if (action.meta.requestId !== state.currentRequestId) return;
         state.status = 'succeeded';
         state.items = action.payload.data;
         state.pagination = action.payload.pagination;
       })
       .addCase(fetchInvoices.rejected, (state, action) => {
+        if (action.meta.requestId !== state.currentRequestId) return;
         state.status = 'failed';
         state.error = action.payload ?? 'Failed to load invoices';
       });
-
   },
 });
 
