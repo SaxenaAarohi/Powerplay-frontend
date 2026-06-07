@@ -56,7 +56,6 @@ export default function CustomerProfilePage() {
         <ArrowLeft className="h-4 w-4" /> Back to invoices
       </Link>
 
-      {}
       <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-4">
         {isLoading ? (
           <Skeleton className="h-16 w-16 rounded-2xl" />
@@ -82,7 +81,6 @@ export default function CustomerProfilePage() {
         </div>
       </motion.div>
 
-      {}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard index={0} label="Total billed" value={data?.metrics.totalBilled ?? 0} format={formatCurrency} icon={IndianRupee} accent="violet" loading={isLoading} />
         <StatCard index={1} label="Total tax" value={data?.metrics.totalTax ?? 0} format={formatCurrency} icon={TrendingUp} accent="emerald" loading={isLoading} />
@@ -91,7 +89,6 @@ export default function CustomerProfilePage() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        {}
         <Card className="lg:col-span-1">
           <CardHeader>
             <CardTitle>Status mix</CardTitle>
@@ -118,7 +115,6 @@ export default function CustomerProfilePage() {
           </CardContent>
         </Card>
 
-        {}
         <Card className="overflow-hidden lg:col-span-2">
           <CardHeader>
             <CardTitle>Invoice history</CardTitle>

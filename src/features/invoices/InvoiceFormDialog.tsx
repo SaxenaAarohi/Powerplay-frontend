@@ -111,7 +111,6 @@ export function InvoiceFormDialog({ open, onOpenChange, invoice, onSuccess }: In
         </DialogHeader>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
-          {}
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Customer" error={errors.customerId?.message} htmlFor="customerId">
               <Select value={customerId} onValueChange={(v) => setValue('customerId', v, { shouldValidate: true })}>
@@ -133,7 +132,6 @@ export function InvoiceFormDialog({ open, onOpenChange, invoice, onSuccess }: In
             </Field>
           </div>
 
-          {}
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Amount" error={errors.amount?.message} htmlFor="amount">
               <Input id="amount" type="number" step="0.01" min="0" placeholder="0.00" {...register('amount')} />
@@ -158,7 +156,6 @@ export function InvoiceFormDialog({ open, onOpenChange, invoice, onSuccess }: In
             </Field>
           </div>
 
-          {}
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Issue date" error={errors.issueDate?.message} htmlFor="issueDate">
               <Input id="issueDate" type="date" {...register('issueDate')} />
@@ -168,7 +165,6 @@ export function InvoiceFormDialog({ open, onOpenChange, invoice, onSuccess }: In
             </Field>
           </div>
 
-          {}
           <Field label="Status" error={errors.status?.message} htmlFor="status">
             <Select
               value={watch('status')}
@@ -187,7 +183,6 @@ export function InvoiceFormDialog({ open, onOpenChange, invoice, onSuccess }: In
             </Select>
           </Field>
 
-          {}
           <div className="flex items-center justify-between rounded-lg border bg-muted/40 px-4 py-3 text-sm">
             <span className="text-muted-foreground">
               Tax <span className="font-medium text-foreground">{formatCurrency(tax)}</span>

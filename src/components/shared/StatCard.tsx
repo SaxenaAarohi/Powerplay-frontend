@@ -46,7 +46,6 @@ export function StatCard({
       transition={{ duration: 0.35, delay: index * 0.06, ease: 'easeOut' }}
     >
       <Card className="card-hover relative overflow-hidden p-5">
-        {}
         <div className={cn('pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full blur-2xl', colors.glow)} />
 
         <div className="relative flex items-start justify-between gap-3">

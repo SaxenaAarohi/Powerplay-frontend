@@ -14,7 +14,6 @@ export function AppLayout() {
 
   return (
     <div className="app-surface flex min-h-screen w-full">
-      {}
       <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-border/60 bg-card/40 backdrop-blur-xl lg:flex">
         <Brand />
         <nav className="flex flex-1 flex-col gap-1 p-3">
@@ -32,7 +31,6 @@ export function AppLayout() {
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        {}
         <header className="sticky top-0 z-30 flex items-center justify-between border-b border-border/60 bg-background/80 px-4 py-3 backdrop-blur-xl lg:hidden">
           <Brand compact />
           <div className="flex items-center gap-1">

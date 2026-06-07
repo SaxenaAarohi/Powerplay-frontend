@@ -40,7 +40,6 @@ export default function SummaryPage() {
         <p className="text-sm text-muted-foreground">A high-level view of billing across all customers.</p>
       </div>
 
-      {}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard index={0} label="Total billed" value={data?.totalBilled ?? 0} format={formatCurrency} icon={IndianRupee} accent="violet" loading={isLoading} />
         <StatCard index={1} label="Total tax" value={data?.totalTax ?? 0} format={formatCurrency} icon={TrendingUp} accent="emerald" loading={isLoading} />
@@ -48,7 +47,6 @@ export default function SummaryPage() {
         <StatCard index={3} label="Customers" value={data?.customerCount ?? 0} format={formatNumber} icon={Users} accent="amber" loading={isLoading} />
       </div>
 
-      {}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         <Card className="lg:col-span-2">
           <CardHeader>
@@ -87,7 +85,6 @@ export default function SummaryPage() {
         </Card>
       </div>
 
-      {}
       <Card>
         <CardHeader>
           <CardTitle>Top customers by value</CardTitle>

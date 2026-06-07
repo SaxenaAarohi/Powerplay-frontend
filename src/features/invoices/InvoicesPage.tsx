@@ -111,7 +111,6 @@ export default function InvoicesPage() {
 
   return (
     <div className="space-y-6">
-      {}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Invoices</h1>
@@ -122,7 +121,6 @@ export default function InvoicesPage() {
         </Button>
       </div>
 
-      {}
       <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
         <StatCard index={0} label="Total billed" value={summary?.totalBilled ?? 0} format={formatCurrency} icon={IndianRupee} accent="violet" loading={summaryLoading} />
         <StatCard index={1} label="Total tax" value={summary?.totalTax ?? 0} format={formatCurrency} icon={TrendingUp} accent="emerald" loading={summaryLoading} />
