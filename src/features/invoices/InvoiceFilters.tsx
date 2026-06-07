@@ -27,8 +27,9 @@ export function InvoiceFilters({ filters, onChange, onReset, activeCount }: Invo
   const { customers } = useCustomers();
 
   return (
-    <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-      <div className="relative w-full sm:max-w-xs">
+    <div className="flex flex-col gap-2">
+      {/* Row 1: search (full width) */}
+      <div className="relative w-full">
         <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <Input
           placeholder="Search invoice or customer…"
@@ -39,58 +40,67 @@ export function InvoiceFilters({ filters, onChange, onReset, activeCount }: Invo
         />
       </div>
 
-      <Select
-        value={filters.status || ALL}
-        onValueChange={(v) => onChange({ status: v === ALL ? '' : (v as InvoiceFilterState['status']) })}
-      >
-        <SelectTrigger className="w-full sm:w-[150px]">
-          <SelectValue placeholder="Status" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value={ALL}>All statuses</SelectItem>
-          {INVOICE_STATUSES.map((s) => (
-            <SelectItem key={s} value={s}>
-              {s}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      {/* Row 2: the four filters share one row and shrink to fit (no scroll) */}
+      <div className="flex items-center gap-2">
+        <Select
+          value={filters.status || ALL}
+          onValueChange={(v) => onChange({ status: v === ALL ? '' : (v as InvoiceFilterState['status']) })}
+        >
+          <SelectTrigger className="min-w-0 flex-1 sm:w-[140px] sm:flex-none">
+            <SelectValue placeholder="Status" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value={ALL}>All statuses</SelectItem>
+            {INVOICE_STATUSES.map((s) => (
+              <SelectItem key={s} value={s}>
+                {s}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
-      <Select value={filters.taxRate || ALL} onValueChange={(v) => onChange({ taxRate: v === ALL ? '' : v })}>
-        <SelectTrigger className="w-full sm:w-[130px]">
-          <SelectValue placeholder="Tax rate" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value={ALL}>All tax rates</SelectItem>
-          {TAX_RATES.map((r) => (
-            <SelectItem key={r} value={String(r)}>
-              {r}% tax
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+        <Select value={filters.taxRate || ALL} onValueChange={(v) => onChange({ taxRate: v === ALL ? '' : v })}>
+          <SelectTrigger className="min-w-0 flex-1 sm:w-[100px] sm:flex-none">
+            <SelectValue placeholder="Tax" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value={ALL}>All</SelectItem>
+            {TAX_RATES.map((r) => (
+              <SelectItem key={r} value={String(r)}>
+                {r}%
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
-      <Select value={filters.customerId || ALL} onValueChange={(v) => onChange({ customerId: v === ALL ? '' : v })}>
-        <SelectTrigger className="w-full sm:w-[190px]">
-          <SelectValue placeholder="Customer" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value={ALL}>All customers</SelectItem>
-          {customers.map((c) => (
-            <SelectItem key={c._id} value={c._id}>
-              {c.name}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+        <Select value={filters.customerId || ALL} onValueChange={(v) => onChange({ customerId: v === ALL ? '' : v })}>
+          <SelectTrigger className="min-w-0 flex-1 sm:w-[170px] sm:flex-none">
+            <SelectValue placeholder="Customer" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value={ALL}>All</SelectItem>
+            {customers.map((c) => (
+              <SelectItem key={c._id} value={c._id}>
+                {c.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
-      <DateRangePopover filters={filters} onChange={onChange} />
+        <DateRangePopover filters={filters} onChange={onChange} />
 
-      {activeCount > 0 && (
-        <Button variant="ghost" size="sm" onClick={onReset} className="text-muted-foreground">
-          <X className="h-4 w-4" /> Clear ({activeCount})
-        </Button>
-      )}
+        {activeCount > 0 && (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onReset}
+            className="h-9 w-9 shrink-0 text-muted-foreground"
+            aria-label={`Clear ${activeCount} filters`}
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        )}
+      </div>
     </div>
   );
 }
@@ -105,7 +115,7 @@ function DateRangePopover({
   const hasDates = filters.issueDateFrom || filters.issueDateTo || filters.dueDateFrom || filters.dueDateTo;
   return (
     <Popover>
-      <PopoverTrigger className="inline-flex h-9 w-full items-center justify-start gap-2 rounded-md border border-input bg-background px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-auto">
+      <PopoverTrigger className="inline-flex h-9 min-w-0 flex-1 items-center justify-center gap-2 rounded-md border border-input bg-background px-3 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:flex-none sm:justify-start sm:px-4">
         <CalendarDays className="h-4 w-4" />
         Dates
         {hasDates && <span className="ml-1 h-1.5 w-1.5 rounded-full bg-primary" />}
