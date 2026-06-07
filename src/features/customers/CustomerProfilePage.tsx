@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, IndianRupee, Receipt, TrendingUp, Wallet } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { StatCard } from '@/components/shared/StatCard';
 import { StatusBadge } from '@/components/shared/StatusBadge';
@@ -50,11 +49,12 @@ export default function CustomerProfilePage() {
 
   return (
     <div className="space-y-6">
-      <Button variant="ghost" size="sm" asChild className="-ml-2 w-fit text-muted-foreground">
-        <Link to="/">
-          <ArrowLeft className="h-4 w-4" /> Back to invoices
-        </Link>
-      </Button>
+      <Link
+        to="/"
+        className="-ml-2 inline-flex w-fit items-center gap-2 rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+      >
+        <ArrowLeft className="h-4 w-4" /> Back to invoices
+      </Link>
 
       {}
       <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-4">

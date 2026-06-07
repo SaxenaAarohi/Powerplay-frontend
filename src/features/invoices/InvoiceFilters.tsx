@@ -105,12 +105,10 @@ function DateRangePopover({
   const hasDates = filters.issueDateFrom || filters.issueDateTo || filters.dueDateFrom || filters.dueDateTo;
   return (
     <Popover>
-      <PopoverTrigger asChild>
-        <Button variant="outline" className="w-full justify-start sm:w-auto">
-          <CalendarDays className="h-4 w-4" />
-          Dates
-          {hasDates && <span className="ml-1 h-1.5 w-1.5 rounded-full bg-primary" />}
-        </Button>
+      <PopoverTrigger className="inline-flex h-9 w-full items-center justify-start gap-2 rounded-md border border-input bg-background px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-auto">
+        <CalendarDays className="h-4 w-4" />
+        Dates
+        {hasDates && <span className="ml-1 h-1.5 w-1.5 rounded-full bg-primary" />}
       </PopoverTrigger>
       <PopoverContent align="end" className="w-80 space-y-4">
         <DateRow

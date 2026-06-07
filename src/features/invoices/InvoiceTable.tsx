@@ -2,7 +2,6 @@ import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowDown, ArrowUp, ChevronsUpDown, MoreHorizontal, Pencil, Trash2 } from 'lucide-react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -65,10 +64,11 @@ export const InvoiceTable = memo(function InvoiceTable({
             <TableCell className="whitespace-nowrap text-muted-foreground">{formatDate(invoice.dueDate)}</TableCell>
             <TableCell>
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-8 w-8" aria-label="Row actions">
-                    <MoreHorizontal className="h-4 w-4" />
-                  </Button>
+                <DropdownMenuTrigger
+                  aria-label="Row actions"
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <MoreHorizontal className="h-4 w-4" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem onClick={() => onEdit(invoice)}>
